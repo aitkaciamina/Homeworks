@@ -1,0 +1,91 @@
+# include<iostream>
+using namspace std;
+
+class Node 
+{
+    public:
+    int data;
+    Node* next;
+    Node()
+    {
+        data=0;
+        next=NULL;
+    }
+    Node(int n)
+    {
+        this->data=n;
+        this->next=NULL;
+    }
+}
+
+class Linked_list
+{
+    private:
+    Node* head;
+    public:
+    Linked_list()
+    {
+        head=NULL;
+    }
+    void print_list()
+    {
+        Node* tmp;
+        while(tmp->next!=NULL)
+        {
+            cout<<tmp->data<<'\t';
+            tmp=tmp->next;
+        }
+    }
+    void delete_back()
+    {
+        Node* tmp=head;
+        while(tmp->next!=NULL)
+        {
+            tmp=tmp->next;
+        }
+        Node* last_node =tmp->next;
+        tmp->next=NULL;
+        free(last_node);
+    }
+    void insert_front(int n)
+    {
+        int new_n =new Node;
+        new_n->data=n;
+        new_n->next=head;
+        head=new_n;
+    }
+    void delete_front()
+    {
+        Node *tmp = head->next;
+        delete head;
+        head=tmp;
+    }
+    void delete_specific( int n)
+    {
+            Node* prev=head;
+            Node*tmp=prev->next;
+            while(tmp->data!=n)
+            {
+                tmp->next=next;
+            }
+            prev->next=tmp->next;
+    }
+    
+    void Find (int n)
+    {
+        Node* tmp =head;
+        while(tmp->next!=NULL)
+        {
+            if (tmp->data==n)
+            {
+                delete_specific(n);
+                insert_front(n);
+            }
+            tmp=tmp->next;
+        }
+    }
+}
+int main()
+{ 
+    return 0;
+}
